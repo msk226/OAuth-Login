@@ -35,6 +35,9 @@ dependencies {
     implementation(group: 'io.jsonwebtoken', name: 'jjwt', version: '0.11.5')
     implementation('io.jsonwebtoken:jjwt:0.9.1')
 
+    // feign
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:4.1.3"
+    implementation 'io.github.openfeign:feign-jackson:12.1'
 }
 
 tasks.named('test') {
