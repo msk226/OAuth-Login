@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import study.login.common.SocialLoginType;
+import study.login.dto.GoogleOAuthToken;
+import study.login.dto.GoogleUser;
+import study.login.dto.kakao.KaKaoOAuthToken.KaKaoOAuthTokenDTO;
+import study.login.dto.kakao.KaKaoUser;
 import study.login.security.JwtService;
 
 @Service
@@ -13,6 +17,8 @@ import study.login.security.JwtService;
 public class OAuthService {
 
     private final HttpServletResponse response;
+    private final KaKaoOauth kaKaoOauth;
+    private final GoogleOauth googleOauth;
     private final JwtService jwtService;
 
     public void accessRequest(SocialLoginType socialLoginType) throws IOException {
@@ -20,10 +26,10 @@ public class OAuthService {
 
         switch (socialLoginType){ //각 소셜 로그인을 요청하면 소셜로그인 페이지로 리다이렉트 해주는 프로세스이다.
             case GOOGLE:{
-                redirectURL = " ";
+                redirectURL = googleOauth.getOauthRedirectURL();
             } break;
             case KAKAO:{
-                redirectURL = " ";
+                redirectURL = kaKaoOauth.getOauthRedirectURL();
             } break;
             case NAVER:{
                 redirectURL = " ";
@@ -42,12 +48,13 @@ public class OAuthService {
     public void oAuthLoginOrJoin(SocialLoginType socialLoginType, String code) throws IOException {
         switch (socialLoginType) {
             case GOOGLE: {
-
+                GoogleOAuthToken googleOAuthToken = googleOauth.requestAccessToken(code);
+                GoogleUser googleUser = googleOauth.requestUserInfo(googleOAuthToken);
 
             } break;
             case KAKAO: {
-
-
+                KaKaoOAuthTokenDTO kaKaoOAuthTokenDTO = kaKaoOauth.requestAccessToken(code);
+                KaKaoUser kaKaoUser = kaKaoOauth.requestUserInfo(kaKaoOAuthTokenDTO);
             } break;
             case NAVER: {
 
