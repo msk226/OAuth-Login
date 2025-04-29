@@ -1,4 +1,4 @@
-package study.login.oauth;
+package study.login.oauth.imple;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,21 +6,19 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import study.login.client.KaKaoApiClient;
-import study.login.client.KaKaoAuthClient;
+import study.login.client.kakao.KaKaoApiClient;
+import study.login.client.kakao.KaKaoAuthClient;
 import study.login.dto.kakao.KaKaoOAuthToken.KaKaoOAuthTokenDTO;
 import study.login.dto.kakao.KaKaoUser;
+import study.login.oauth.SocialOauth;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class KaKaoOauth implements SocialOauth{
+public class KaKaoOauth implements SocialOauth {
 
     @Value("${spring.OAuth2.kakao.url}")
     private String KAKAO_SNS_URL;

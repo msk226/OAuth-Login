@@ -1,7 +1,4 @@
-package study.login.dto;
-
-import java.time.LocalDateTime;
-
+package study.login.dto.google;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import study.login.common.SocialLoginType;
-import study.login.dto.GoogleOAuthToken;
-import study.login.dto.GoogleUser;
+import study.login.dto.google.GoogleOAuthToken;
+import study.login.dto.google.GoogleUser;
 import study.login.dto.kakao.KaKaoOAuthToken.KaKaoOAuthTokenDTO;
 import study.login.dto.kakao.KaKaoUser;
+import study.login.oauth.imple.GoogleOauth;
+import study.login.oauth.imple.KaKaoOauth;
 import study.login.security.JwtService;
 
 @Service

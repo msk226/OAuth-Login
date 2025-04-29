@@ -1,4 +1,4 @@
-package study.login.dto;
+package study.login.dto.google;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

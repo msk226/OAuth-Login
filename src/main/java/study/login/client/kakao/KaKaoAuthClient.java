@@ -1,4 +1,4 @@
-package study.login.client;
+package study.login.client.kakao;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

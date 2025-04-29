@@ -1,28 +1,19 @@
-package study.login.oauth;
+package study.login.oauth.imple;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import study.login.client.GoogleApiClient;
-import study.login.client.GoogleAuthClient;
-import study.login.dto.GoogleOAuthToken;
-import study.login.dto.GoogleUser;
+import study.login.client.google.GoogleApiClient;
+import study.login.client.google.GoogleAuthClient;
+import study.login.dto.google.GoogleOAuthToken;
+import study.login.dto.google.GoogleUser;
+import study.login.oauth.SocialOauth;
 
 @Slf4j
 @Component
