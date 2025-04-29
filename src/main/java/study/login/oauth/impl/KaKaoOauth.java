@@ -1,4 +1,4 @@
-package study.login.oauth.imple;
+package study.login.oauth.impl;
 
 import java.util.HashMap;
 import java.util.Map;
