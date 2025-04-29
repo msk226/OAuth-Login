@@ -1,6 +1,8 @@
 package study.login.oauth;
 
 
+import static study.login.dto.naver.NaverOAuthToken.*;
+
 import java.io.IOException;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,8 +12,11 @@ import study.login.dto.google.GoogleOAuthToken;
 import study.login.dto.google.GoogleUser;
 import study.login.dto.kakao.KaKaoOAuthToken.KaKaoOAuthTokenDTO;
 import study.login.dto.kakao.KaKaoUser;
-import study.login.oauth.imple.GoogleOauth;
-import study.login.oauth.imple.KaKaoOauth;
+import study.login.dto.naver.NaverOAuthToken;
+import study.login.dto.naver.NaverUser;
+import study.login.oauth.impl.GoogleOauth;
+import study.login.oauth.impl.KaKaoOauth;
+import study.login.oauth.impl.NaverOauth;
 import study.login.security.JwtService;
 
 @Service
@@ -19,8 +24,11 @@ import study.login.security.JwtService;
 public class OAuthService {
 
     private final HttpServletResponse response;
+
     private final KaKaoOauth kaKaoOauth;
     private final GoogleOauth googleOauth;
+    private final NaverOauth naverOauth;
+
     private final JwtService jwtService;
 
     public void accessRequest(SocialLoginType socialLoginType) throws IOException {
@@ -34,7 +42,7 @@ public class OAuthService {
                 redirectURL = kaKaoOauth.getOauthRedirectURL();
             } break;
             case NAVER:{
-                redirectURL = " ";
+                redirectURL = naverOauth.getOauthRedirectURL();
             } break;
             case APPLE: {
                 redirectURL = " ";
@@ -59,6 +67,8 @@ public class OAuthService {
                 KaKaoUser kaKaoUser = kaKaoOauth.requestUserInfo(kaKaoOAuthTokenDTO);
             } break;
             case NAVER: {
+                NaverOAuthTokenDTO naverOAuthTokenDTO = naverOauth.requestAccessToken(code);
+                NaverUser naverUser = naverOauth.requestUserInfo(naverOAuthTokenDTO);
 
             } break;
             case APPLE: {
